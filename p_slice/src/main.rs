@@ -16,3 +16,14 @@ fn first_word(s: &str) -> &str {
     }
     &s[..]
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_first_word() {
+        let s = String::from("hello world");
+        assert_eq!("hello", first_word(&s))
+    }
+}
