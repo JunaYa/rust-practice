@@ -1,10 +1,5 @@
-[workspace]
-members = [
-	"vector",
-]
-
 [package]
-name = "rust-practice"
+name = "vector"
 version = "0.1.0"
 edition = "2021"
 
