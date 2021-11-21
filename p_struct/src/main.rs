@@ -52,9 +52,7 @@ fn runP2 () {
     let area_value2 = area_by_tupl((width1, height1));
     let scale = 2;
     let rect1 = Rectangle { width: dbg!(30 * scale), height: 50 };
-    println!("rect struct {:?}", rect1);
-    let area_value = area_by_struct(rect1);
-    println!("The area of the rectangle is {} square pixels", area_value);
+    println!("The area of the rectangle is {} square pixels", rect1.area());
 }
 
 fn area(width: u32, height: u32) -> u32 {
@@ -70,6 +68,12 @@ fn area_by_tupl (dimensions: (u32, u32)) -> u32 {
 struct Rectangle {
     width: u32,
     height: u32,
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
 }
 
 fn area_by_struct (rect: Rectangle) -> u32 {
