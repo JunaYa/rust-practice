@@ -1,6 +1,8 @@
+use lib_slice;
+
 fn main() {
     let s = String::from("hello world");
-    let world = first_word(&s[..]);
+    let world = lib_slice::first_word(&s[..]);
     println!("Hello, world! {}", world);
 }
 
