@@ -1,14 +1,5 @@
-[workspace]
-members = [
-	"p_vector",
-	"p_slice",
-	"p_struct",
-	"p_closures",
-	"p_iter",
-]
-
 [package]
-name = "rust-practice"
+name = "p_iter"
 version = "0.1.0"
 edition = "2021"
 

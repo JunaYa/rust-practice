@@ -11,6 +11,10 @@ name = "p_closures"
 version = "0.1.0"
 
 [[package]]
+name = "p_iter"
+version = "0.1.0"
+
+[[package]]
 name = "p_slice"
 version = "0.1.0"
 dependencies = [
