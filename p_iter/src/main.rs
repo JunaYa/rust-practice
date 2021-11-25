@@ -8,6 +8,8 @@ fn main() {
     iter_sum();
     // 迭代器适配器
     iter_adapter();
+
+    calling_next_directly();
 }
 
 fn iter_in_for () {
@@ -70,4 +72,37 @@ fn iterator_demonstration() {
     assert_eq!(v1_iter.next(), Some(&2));
     assert_eq!(v1_iter.next(), Some(&3));
     assert_eq!(v1_iter.next(), None);
+}
+
+struct Counter {
+    count: u32,
+}
+
+impl Counter {
+    fn new() -> Counter {
+        Counter { count: 0 }
+    }
+}
+
+impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.count += 1;
+        if self.count < 6 {
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+
+fn calling_next_directly() {
+    let mut counter = Counter::new();
+    println!("counter.next() {:?}", counter.next());
+    println!("counter.next() {:?}", counter.next());
+    println!("counter.next() {:?}", counter.next());
+    println!("counter.next() {:?}", counter.next());
+    println!("counter.next() {:?}", counter.next());
+    println!("counter.next() {:?}", counter.next());
 }
