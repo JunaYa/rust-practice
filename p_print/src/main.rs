@@ -43,6 +43,10 @@ fn main() {
     // Display 12, 12
     println!("Debug {:?}", minmax);
     // Debug Minmax(12, 12)
+
+    // list test
+    let v = List(vec![1, 2, 3]);
+    println!("Display {}", v);
 }
 
 #[derive(Debug)]
@@ -53,7 +57,7 @@ struct Person<'a> {
 
 // -------------------std::fmt
 
-use std::fmt;
+use std::fmt::{self, write};
 
 #[derive(Debug)]
 struct Minmax(i64, i64);
@@ -73,5 +77,21 @@ struct Point {
 impl fmt::Display for Point {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "x:{}, y:{}", self.x, self.y)
+    }
+}
+
+struct List(Vec<i32>);
+
+impl fmt::Display for List {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let vec = &self.0;
+        write!(f, "[")?;
+        for (count, v) in vec.iter().enumerate() {
+            if count != 0 {
+                write!(f, ", ")?
+            }
+            write!(f, "{}", v)?
+        }
+        write!(f, "]")
     }
 }
