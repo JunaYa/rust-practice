@@ -35,10 +35,43 @@ fn main() {
     };
     println!("person is {:?}", aya);
     // person is Person { name: "aya", age: 12 }
+
+    // minmax
+    let minmax = Minmax(12, 12);
+    println!("custom minmax -----");
+    println!("Display {}", minmax);
+    // Display 12, 12
+    println!("Debug {:?}", minmax);
+    // Debug Minmax(12, 12)
 }
 
 #[derive(Debug)]
 struct Person<'a> {
     name: &'a str,
     age: i32,
+}
+
+// -------------------std::fmt
+
+use std::fmt;
+
+#[derive(Debug)]
+struct Minmax(i64, i64);
+
+impl fmt::Display for Minmax {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}, {}", self.0, self.1)
+    }
+}
+
+#[derive(Debug)]
+struct Point {
+    x: f64,
+    y: f64,
+}
+
+impl fmt::Display for Point {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "x:{}, y:{}", self.x, self.y)
+    }
 }
