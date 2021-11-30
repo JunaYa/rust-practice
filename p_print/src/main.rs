@@ -27,5 +27,18 @@ fn main() {
 
     println!("{number:#>width$}", number=1, width=10);
     // #########1
-    
+
+    // fommatted print
+    let aya = Person {
+        name: "aya",
+        age: 12,
+    };
+    println!("person is {:?}", aya);
+    // person is Person { name: "aya", age: 12 }
+}
+
+#[derive(Debug)]
+struct Person<'a> {
+    name: &'a str,
+    age: i32,
 }
