@@ -1,5 +1,3 @@
-use std::pin;
-
 fn main() {
     println!("Hello, world!");
 
@@ -14,6 +12,8 @@ fn main() {
     match_test5();
 
     match_test6();
+
+    match_test7();
 }
 
 // 匹配字面值
@@ -117,4 +117,24 @@ fn match_test6 () {
             println!("ChangeColor h = {}, s = {}, v = {}", h, s, v);
         }
     }
+}
+
+// 忽略一些
+fn match_test7 () {
+    // 忽略未绑定的值
+    
+    let s = Some(String::from("Hello!"));
+    
+    // 单纯下滑线不绑定值
+    if let Some(_) = s {
+        println!("found a string");
+    }
+    println!("{:?}", s);
+
+    // 以下划线开头的未使用变量仍然会绑定值
+    // if let Some(_s) = s {
+    //     println!("found a string");
+    // }
+    // 它可能会获取值的所有权
+    // println!("{:?}", s);
 }
