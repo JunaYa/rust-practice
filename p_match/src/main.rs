@@ -1,3 +1,5 @@
+use std::pin;
+
 fn main() {
     println!("Hello, world!");
 
@@ -8,6 +10,8 @@ fn main() {
     match_test3();
 
     match_test4();
+
+    match_test5();
 }
 
 // 匹配字面值
@@ -60,5 +64,21 @@ fn match_test4 () {
         'a'..='c' => println!("early ASCII letter"),
         'k'..='z' => println!("late ASCII letter"),
         _ => println!("something else"),
+    }
+}
+
+
+struct Point {
+    x: i32,
+    y: i32,
+}
+// 解构并分解值
+fn match_test5 () {
+    let p = Point { x: 1, y: 1};
+
+    match p {
+        Point {x, y: 1} => println!("x at {}", x),
+        Point {x: 0, y} => println!("y at {}", y),
+        Point { x, y } => println!("x = {}, y = {}", x, y),
     }
 }
