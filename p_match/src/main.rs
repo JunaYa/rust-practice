@@ -14,6 +14,8 @@ fn main() {
     match_test6();
 
     match_test7();
+
+    match_test8();
 }
 
 // 匹配字面值
@@ -137,4 +139,35 @@ fn match_test7 () {
     // }
     // 它可能会获取值的所有权
     // println!("{:?}", s);
+}
+
+struct Axis {
+    x: i32,
+    y: i32,
+    z: i32,
+}
+// 用 .. 忽略剩余值
+fn match_test8 () {
+    let origin = Axis {x: 0, y: 0, z: 0};
+
+    match origin {
+        Axis {x, ..} => println!("x = {}", x),
+        _ => println!("none"),
+    }
+
+    let numbers = (2, 4, 5, 6, 7, 8, 9);
+
+    match numbers {
+        (first, .., five) => {
+            println!("first = {}, five = {}", first, five);
+        }
+    }
+
+    // let numbers = (2, 4, 5, 6, 7, 8, 9);
+
+    // match numbers {
+    //     (.., second, ..) => {
+    //         println!("Some numbers: {}", second)
+    //     },
+    // }
 }
