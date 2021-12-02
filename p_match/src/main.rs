@@ -1,13 +1,17 @@
 fn main() {
     println!("Hello, world!");
 
-    matchFn1();
+    match_test1();
 
-    matchFn2();
+    match_test2();
+
+    match_test3();
+
+    match_test4();
 }
 
 // 匹配字面值
-fn matchFn1 () {
+fn match_test1 () {
     let x = 5;
     
     match x {
@@ -19,7 +23,7 @@ fn matchFn1 () {
 }
 
 // 匹配命名变量
-fn matchFn2 () {
+fn match_test2 () {
     let x = Some(5);
     let y = 10;
 
@@ -27,5 +31,34 @@ fn matchFn2 () {
         Some(50) => println!("Got 50"),
         Some(y) => println!("Matched y={:?}", y),
         _ => println!("none match"),
+    }
+}
+
+// 多个模式
+fn match_test3 () {
+    let x = 1;
+
+    match x {
+        1 | 2 => println!("matched one or two"),
+        3 => println!("three"),
+        _ => println!("none"),
+    }
+}
+
+// 通过 ..= 匹配值的范围
+fn match_test4 () {
+    let x = 5;
+
+    match x {
+        1..=5 => println!("one through five"),
+        _ => println!("none")
+    }
+
+    let y = 'k';
+
+    match y {
+        'a'..='c' => println!("early ASCII letter"),
+        'k'..='z' => println!("late ASCII letter"),
+        _ => println!("something else"),
     }
 }
