@@ -12,6 +12,8 @@ fn main() {
     match_test4();
 
     match_test5();
+
+    match_test6();
 }
 
 // 匹配字面值
@@ -80,5 +82,31 @@ fn match_test5 () {
         Point {x, y: 1} => println!("x at {}", x),
         Point {x: 0, y} => println!("y at {}", y),
         Point { x, y } => println!("x = {}, y = {}", x, y),
+    }
+}
+
+enum Message {
+    Quit,
+    Move {x: i32, y: i32},
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+// 解构枚举
+fn match_test6 () {
+    let msg = Message::ChangeColor(255, 255, 255);
+
+    match msg {
+        Message::Quit => {
+            println!("quit");
+        },
+        Message::Move {x, y} => {
+            println!("x = {}, y = {}", x, y);
+        },
+        Message::Write(text) => {
+            println!("write tesx = {}", text);
+        },
+        Message::ChangeColor(r, g, b) => {
+            println!("ChangeColor r = {}, g = {}, b = {}", r, g, b);
+        }
     }
 }
