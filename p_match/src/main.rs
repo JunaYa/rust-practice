@@ -85,15 +85,20 @@ fn match_test5 () {
     }
 }
 
+enum Color {
+    RGB(i32, i32, i32),
+    HSV(i32, i32, i32),
+}
 enum Message {
     Quit,
     Move {x: i32, y: i32},
     Write(String),
-    ChangeColor(i32, i32, i32),
+    ChangeColor(Color),
 }
 // 解构枚举
 fn match_test6 () {
-    let msg = Message::ChangeColor(255, 255, 255);
+    // let msg = Message::ChangeColor(Color::RGB(255, 255, 255));
+    let msg = Message::ChangeColor(Color::HSV(255, 255, 255));
 
     match msg {
         Message::Quit => {
@@ -105,8 +110,11 @@ fn match_test6 () {
         Message::Write(text) => {
             println!("write tesx = {}", text);
         },
-        Message::ChangeColor(r, g, b) => {
+        Message::ChangeColor(Color::RGB(r, g, b)) => {
             println!("ChangeColor r = {}, g = {}, b = {}", r, g, b);
+        },
+        Message::ChangeColor(Color::HSV(h, s, v)) => {
+            println!("ChangeColor h = {}, s = {}, v = {}", h, s, v);
         }
     }
 }
