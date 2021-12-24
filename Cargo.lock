@@ -11,7 +11,7 @@ name = "p_closures"
 version = "0.1.0"
 
 [[package]]
-name = "p_coversion"
+name = "p_conversion"
 version = "0.1.0"
 
 [[package]]
