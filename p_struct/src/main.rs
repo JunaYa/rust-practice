@@ -79,3 +79,15 @@ impl Rectangle {
 fn area_by_struct (rect: Rectangle) -> u32 {
     rect.width * rect.height
 }
+
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: u8,
+}
+
+// A Unit
+struct Unit;
+
+// A tuple 
+struct Pair(u32, u32);
