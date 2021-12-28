@@ -10,6 +10,7 @@ fn main() {
     p_into_iter();
     p_iter_mut();
     p_match();
+    p_match_tuples();
 }
 
 fn p_if_else () {
@@ -132,7 +133,6 @@ fn p_iter_mut () {
     println!("names: {:?}", list);
 }
 
-
 fn p_match () {
     let number = 13;
 
@@ -151,4 +151,14 @@ fn p_match () {
     };
 
     println!("binary {}, boolean {}", binary, boolean);
+}
+
+fn p_match_tuples () {
+    let tripl = (0, 0, 0);
+
+    match tripl {
+        (0,  y, z) => println!("x match"),
+        (0, ..) => println!("x match"),
+        _ => println!("no match"),
+    }
 }
