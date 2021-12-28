@@ -2,6 +2,7 @@ fn main() {
     println!("Hello, world!");
     p_if_else();
     p_loop();
+    p_nesting_labels();
 }
 
 fn p_if_else () {
@@ -31,4 +32,22 @@ fn p_loop () {
             break;
         }
     }
+}
+
+fn p_nesting_labels () {
+    let mut count = 0;
+    'outer: loop {
+        println!("outer loop");
+
+        'inner: loop {
+            count += 1;
+            println!("inner loop {}", count);
+            
+            if count == 3 {
+                break 'outer;
+            }
+        }
+    }
+
+    println!("outer end");
 }
