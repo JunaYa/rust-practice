@@ -11,6 +11,7 @@ fn main() {
     p_iter_mut();
     p_match();
     p_match_tuples();
+    p_match_enums();
 }
 
 fn p_if_else () {
@@ -160,5 +161,33 @@ fn p_match_tuples () {
         (0,  y, z) => println!("x match"),
         (0, ..) => println!("x match"),
         _ => println!("no match"),
+    }
+}
+
+
+enum Color {
+    Red,
+    Blue,
+    Green,
+    RGB(u32, u32, u32),
+    RGBA(u32, u32, u32, u32),
+    HSV(u32, u32, u32),
+    HSL(u32, u32, u32),
+    CMY(u32, u32, u32),
+    CMYK(u32, u32, u32, u32),
+}
+
+fn p_match_enums () {
+    let color = Color::Blue;
+    match color {
+        Color::Red => println!("red"),
+        Color::Blue => println!("blue"),
+        Color::Green => println!("green"),
+        Color::RGB(r, g, b) => println!("rgb blue"),
+        Color::HSV(h, s, v) => println!("hsv"),
+        Color::HSL(h, s, l) => println!("hsl"),
+        Color::CMY(c, m, y) => println!("cmy"),
+        Color::CMYK(c, m , y ,k) => println!("cmyk"),
+        _ => println!("no color"),
     }
 }
