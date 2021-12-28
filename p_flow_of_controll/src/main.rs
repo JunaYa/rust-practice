@@ -6,6 +6,9 @@ fn main() {
     p_returning_from_loops();
     p_while();
     p_for_loop();
+    p_iter();
+    p_into_iter();
+    p_iter_mut();
 }
 
 fn p_if_else () {
@@ -94,4 +97,36 @@ fn p_for_loop () {
     for m in 0..=3 {
         println!(" m is {}", m);
     }
+}
+
+fn p_iter () {
+    let list = vec!["a", "b", "c"];
+    for item in list.iter() {
+        match item {
+            &"a" => println!("this is A"),
+            _ => println!("item is {}", item)
+        }
+    }
+}
+
+fn p_into_iter () {
+    let list = vec!["a", "b", "c"];
+
+    for item in list.into_iter() {
+        match item {
+            "a" => println!("There is a rustacean among us!"),
+            _ => println!("Hello {}", item),
+        }
+    }
+}
+
+fn p_iter_mut () {
+    let mut list = vec!["a", "b", "c"];
+    for item in list.iter_mut() {
+        *item = match item {
+            &mut "a" => "There is a rustacean among us!",
+            _ => "Hello",
+        }
+    }
+    println!("names: {:?}", list);
 }
