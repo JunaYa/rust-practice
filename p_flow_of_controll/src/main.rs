@@ -9,6 +9,7 @@ fn main() {
     p_iter();
     p_into_iter();
     p_iter_mut();
+    p_match();
 }
 
 fn p_if_else () {
@@ -129,4 +130,25 @@ fn p_iter_mut () {
         }
     }
     println!("names: {:?}", list);
+}
+
+
+fn p_match () {
+    let number = 13;
+
+    match number {
+        1 => println!("one"),
+        3 | 5 | 7 | 9 | 11 | 13 => println!("This is a prima"),
+        13..=40 => println!("A ten"),
+        _ => println!("other")
+    }
+
+    let boolean = true;
+    let binary = match boolean {
+        true => 1,
+        false => 0,
+        _ => -1,
+    };
+
+    println!("binary {}, boolean {}", binary, boolean);
 }
