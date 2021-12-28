@@ -5,6 +5,7 @@ fn main() {
     p_nesting_labels();
     p_returning_from_loops();
     p_while();
+    p_for_loop();
 }
 
 fn p_if_else () {
@@ -82,5 +83,15 @@ fn p_while () {
         }
         
         count += 1;
+    }
+}
+
+fn p_for_loop () {
+    for n in 0..3 {
+        println!("n is {}", n);
+    }
+
+    for m in 0..=3 {
+        println!(" m is {}", m);
     }
 }
