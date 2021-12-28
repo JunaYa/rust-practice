@@ -17,6 +17,10 @@ fn main() {
     assert_eq!(result, Ok(EvenNumber(8)));
     let result: Result<EvenNumber, ()> = 5i32.try_into();
     assert_eq!(result, Err(()));
+
+    // Display
+    let circle = Circle { radius: 6 };
+    println!("{}", circle.to_string());
 }
 
 use std::convert::From;
@@ -45,5 +49,17 @@ impl TryFrom<i32> for EvenNumber {
         } else {
             Err(())
         }
+    }
+}
+
+use std::fmt;
+
+struct Circle {
+    radius: i32,
+}
+
+impl fmt::Display for Circle {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Circle of radius {}", self.radius)
     }
 }
