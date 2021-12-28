@@ -3,6 +3,7 @@ fn main() {
     p_if_else();
     p_loop();
     p_nesting_labels();
+    p_returning_from_loops();
 }
 
 fn p_if_else () {
@@ -50,4 +51,17 @@ fn p_nesting_labels () {
     }
 
     println!("outer end");
+}
+
+fn p_returning_from_loops () {
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    assert_eq!(result, 20);
 }
