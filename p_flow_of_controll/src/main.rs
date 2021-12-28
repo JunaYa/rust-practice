@@ -4,6 +4,7 @@ fn main() {
     p_loop();
     p_nesting_labels();
     p_returning_from_loops();
+    p_while();
 }
 
 fn p_if_else () {
@@ -64,4 +65,22 @@ fn p_returning_from_loops () {
     };
 
     assert_eq!(result, 20);
+}
+
+fn p_while () {
+    let mut count = 0;
+
+    while count < 100 {
+        if count % 15 == 0 {
+            println!("fizzbuzz");
+        } else if count % 3 == 0 {
+            println!("fizz");
+        } else if count % 5 == 0 {
+            println!("buzz");
+        } else {
+            println!("{}", count);
+        }
+        
+        count += 1;
+    }
 }
