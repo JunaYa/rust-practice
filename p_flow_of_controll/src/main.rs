@@ -13,6 +13,7 @@ fn main() {
     p_match_tuples();
     p_match_enums();
     p_match_dereference();
+    p_match_struct();
 }
 
 fn p_if_else () {
@@ -52,6 +53,9 @@ fn p_nesting_labels () {
         'inner: loop {
             count += 1;
             println!("inner loop {}", count);
+            if count == 2 {
+                break 'inner;
+            }
             
             if count == 3 {
                 break 'outer;
@@ -165,7 +169,6 @@ fn p_match_tuples () {
     }
 }
 
-
 enum Color {
     Red,
     Blue,
@@ -219,6 +222,22 @@ fn p_match_dereference () {
             *m += 10;
             println!("We added 10, `mut_value`: {:?}", m)
         }
+    }
+}
+
+struct Foo {
+    x: (u32, u32),
+    y: u32,
+}
+
+fn p_match_struct () {
+    let foo = Foo { x: (1, 2), y: 3 };
+
+    match foo {
+        Foo {x: (a, b), y: 2} => println!("Foo a = {}, b = {}", a, b),
+        Foo { x: (1, b), y: 1 } => println!("Foo b = {}", b),
+        Foo { x: (a, 2), y } => println!("Foo a = {}, y = {}", a, y),
+        _ => println!("none"),
     }
 }
 
