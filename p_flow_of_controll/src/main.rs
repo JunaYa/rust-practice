@@ -14,6 +14,7 @@ fn main() {
     p_match_enums();
     p_match_dereference();
     p_match_struct();
+    p_match_guard();
 }
 
 fn p_if_else () {
@@ -241,3 +242,13 @@ fn p_match_struct () {
     }
 }
 
+fn p_match_guard () {
+    let pair = (2, -2);
+
+    match pair {
+        (x, y) if x == y => println!("These are twins"),
+        (x, y) if x + y == 0 => println!("Antimatter, kaboom"),
+        (x, y) if x % 2 == 0 => println!("The first value is odd"),
+        _ => print!("guard"),
+    }
+}
