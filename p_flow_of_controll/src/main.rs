@@ -15,6 +15,9 @@ fn main() {
     p_match_dereference();
     p_match_struct();
     p_match_guard();
+    p_match_binding();
+    p_if_let();
+    p_while_let();
 }
 
 fn p_if_else () {
@@ -250,5 +253,46 @@ fn p_match_guard () {
         (x, y) if x + y == 0 => println!("Antimatter, kaboom"),
         (x, y) if x % 2 == 0 => println!("The first value is odd"),
         _ => print!("guard"),
+    }
+}
+
+fn age () -> u32 { 15 }
+fn some_number () -> Option<u32> {
+    Some(42)
+}
+fn p_match_binding () {
+    match age() {
+        n @ 1 ..= 12 => println!("child age is {}", n),
+        n @ 13 ..= 19 => println!("child age is = {}", n),
+        _ => println!("binding age")
+    }
+
+    match some_number() {
+        Some(m @ 42) => println!("number is {}", m),
+        Some(m) => println!("number is  = {}", m),
+        _ => println!("binding some number"),
+    }
+}
+
+fn p_if_let () {
+    let optional = Some(1);
+    match optional {
+        Some(i) => println!("optional is {:?}", i),
+        _ => {}
+    }
+}
+
+
+fn p_while_let () {
+    let mut optional = Some(0);
+
+    while let Some(i) = optional {
+        if i > 9 {
+            println!("Greater than 9");
+            optional = None;
+        } else {
+            println!("i is {}", i);
+            optional = Some(i + 1);
+        }
     }
 }
