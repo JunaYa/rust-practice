@@ -1,4 +1,11 @@
 fn main() {
+   
+    init();
+    capturing();
+    input_paramaters();
+}
+
+fn init () {
     println!("Hello, world!");
 
     fn function (i: i32) -> i32 { i + 2 }
@@ -15,8 +22,6 @@ fn main() {
     let one = || i;
 
     println!("one {}", one());
-
-    capturing();
 }
 
 fn capturing () {
@@ -59,5 +64,34 @@ fn capturing () {
 
     println!("{}", contains(&3));
     println!("{}", contains(&1));
-    
+
 }
+
+fn input_paramaters () {
+    use std::mem;
+
+    let greeting = "hello";
+    let mut farewell = "goodbye".to_owned();
+
+    let diary = || {
+        println!("I said greeting {}", greeting);
+        farewell.push_str("!!!");
+        println!("Then I am screamed {}", farewell);
+        println!("ZZzz");
+        mem::drop(farewell);
+    };
+
+    apply(diary);
+
+    let double = |x| 2 * x;
+    println!("3 doubled {}", apply_to_3(double)); 
+}
+
+fn apply<F>(f: F) where F: FnOnce() {
+    f();
+}
+
+fn apply_to_3<F>(f: F) -> i32 where F: Fn(i32) ->i32 {
+    f(3)
+}
+
