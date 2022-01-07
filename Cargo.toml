@@ -9,6 +9,7 @@ members = [
 	"p_match",
 	"p_conversion",
 	"p_flow_of_controll",
+	"p_function",
 ]
 
 [package]
