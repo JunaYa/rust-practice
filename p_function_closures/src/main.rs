@@ -3,6 +3,7 @@ fn main() {
     init();
     capturing();
     input_paramaters();
+    type_anonymity();
 }
 
 fn init () {
@@ -95,3 +96,12 @@ fn apply_to_3<F>(f: F) -> i32 where F: Fn(i32) ->i32 {
     f(3)
 }
 
+fn type_anonymity () {
+    let x = 7;
+    let print = || println!("{}", x);
+
+    apply_fn(print);
+}
+fn apply_fn<F>(f: F) where F:Fn() {
+    f();
+}

@@ -26,7 +26,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
         thread::sleep(Duration::from_secs(2));
         num
     });
-    if (intensity < 25) {
+    if intensity < 25 {
         println!(
             "Today, do {} pushups!",
             expensive_result.value(intensity)
@@ -76,3 +76,4 @@ impl<T> Cacher<T> where T: Fn(u32) -> u32 {
         }
     }
 }
+
