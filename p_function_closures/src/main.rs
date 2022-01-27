@@ -102,6 +102,8 @@ fn type_anonymity () {
 
     apply_fn(print);
 }
+
 fn apply_fn<F>(f: F) where F:Fn() {
     f();
 }
+
