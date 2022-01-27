@@ -4,6 +4,7 @@ fn main() {
     capturing();
     input_paramaters();
     type_anonymity();
+    input_function();
 }
 
 fn init () {
@@ -107,3 +108,16 @@ fn apply_fn<F>(f: F) where F:Fn() {
     f();
 }
 
+fn input_function () {
+    let closure = || println!("I am a closure");
+    call_me(closure);
+    call_me(function);
+}
+
+fn function() {
+    print!("i am a function");
+}
+
+fn call_me<F: Fn()>(f: F) {
+    f();
+}
