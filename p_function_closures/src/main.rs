@@ -5,6 +5,7 @@ fn main() {
     input_paramaters();
     type_anonymity();
     input_function();
+    as_output_parameters();
 }
 
 fn init () {
@@ -120,4 +121,29 @@ fn function() {
 
 fn call_me<F: Fn()>(f: F) {
     f();
+}
+
+fn as_output_parameters() {
+    let fn_plain = create_fn();
+    let mut fn_mut = create_fnmut();
+    let fn_once = create_fnonce();
+
+    fn_plain();
+    fn_mut();
+    fn_once();
+}
+
+fn create_fn() -> impl Fn() {
+    let text = "Fn".to_owned();
+    move || println!("This is a : {}", text)
+}
+
+fn create_fnmut() -> impl FnMut() {
+    let text = "FnMut".to_owned();
+    move || println!("This is a : {}", text)
+}
+
+fn create_fnonce() -> impl FnOnce() {
+    let text = "FnOnce".to_owned();
+    move || println!("This is a : {}", text)
 }
