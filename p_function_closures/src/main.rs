@@ -6,6 +6,17 @@ fn main() {
     type_anonymity();
     input_function();
     as_output_parameters();
+
+    let vec1 = vec![1, 2, 3];
+    let vec2 = vec![4, 5, 6];
+
+    println!("2 in vec1: {}", vec1.iter()     .any(|&x| x == 2));
+    println!("2 in vec2: {}", vec2.into_iter().any(| x| x == 2));
+
+    let arr1 = [1, 2, 3];
+    let arr2 = [4, 5, 6];
+    println!("2 in array1: {}", arr1.iter()     .any(|&x| x == 2));
+    println!("2 in array2: {}", arr2.into_iter().any(| x| x == 2));
 }
 
 fn init () {
