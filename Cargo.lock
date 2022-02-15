@@ -7,6 +7,10 @@ name = "lib_slice"
 version = "0.1.0"
 
 [[package]]
+name = "p_attributes"
+version = "0.1.0"
+
+[[package]]
 name = "p_closures"
 version = "0.1.0"
 

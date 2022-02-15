@@ -11,6 +11,7 @@ members = [
 	"p_flow_of_controll",
 	"p_function",
 	"p_function_closures",
+	"p_attributes",
 ]
 
 [package]
