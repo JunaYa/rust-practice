@@ -1,3 +1,8 @@
+#[cfg(some_condition)]
+fn condition_function () {
+    println!("some condition");
+}
+
 fn main() {
     println!("Hello, world!");
 
@@ -10,6 +15,8 @@ fn main() {
     } else {
         println!("are not Linux");
     }
+
+    condition_function();
 }
 
 fn used_function () {}
