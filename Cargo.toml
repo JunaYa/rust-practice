@@ -12,6 +12,7 @@ members = [
 	"p_function",
 	"p_function_closures",
 	"p_attributes",
+	"p_generics",
 ]
 
 [package]
