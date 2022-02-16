@@ -10,9 +10,15 @@ fn main() {
 
     generic(SingleGen('c'));
 
+    // impletation
     let x = Val { val: 12.9 };
     let gen_val = GenVal { gen_val: 'b' };
     println!("{} {}", x.value(), gen_val.value());
+
+    // trait
+    let empty = Empty;
+    let null = Null;
+    empty.double_drop(null);
 }
 
 struct A;
@@ -67,4 +73,14 @@ impl <T> GenVal<T> {
     fn value(&self) -> &T {
         &self.gen_val
     }
+}
+struct Empty;
+struct Null;
+
+trait DoubleDrop<T> {
+    fn double_drop(self, _: T);
+}
+
+impl <T, U> DoubleDrop<T> for U {
+    fn double_drop(self, _: T) {}
 }
