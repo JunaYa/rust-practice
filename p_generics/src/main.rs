@@ -19,6 +19,11 @@ fn main() {
     let empty = Empty;
     let null = Null;
     empty.double_drop(null);
+
+    // bounds
+    let rectangle = Rectangle { width: 4.0, height: 6.0 };
+    print_debug(&rectangle);
+    println!("{}", area(&rectangle));
 }
 
 struct A;
@@ -83,4 +88,28 @@ trait DoubleDrop<T> {
 
 impl <T, U> DoubleDrop<T> for U {
     fn double_drop(self, _: T) {}
+}
+#[derive(Debug)]
+struct Rectangle {
+    width: f64,
+    height: f64,
+}
+
+trait HasArea {
+    fn area(&self) -> f64;
+}
+
+impl HasArea for Rectangle {
+    fn area(&self) -> f64 {
+        self.width * self.height
+    }
+}
+
+use std::fmt::Debug;
+fn print_debug<T: Debug> (t: &T) {
+    println!("{:?}", t);
+}
+
+fn area<T: HasArea> (t: &T) -> f64 {
+    t.area()
 }
