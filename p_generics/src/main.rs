@@ -34,6 +34,8 @@ fn main() {
 
     compare_print(&string);
     compare_types(&array, &vec);
+
+    vec.print_in_option();
 }
 
 struct A;
@@ -131,4 +133,15 @@ fn compare_print<T: Debug + Display> (t: &T) {
 fn compare_types<T: Debug, U: Debug>(t: &T, u: &U) {
     println!("t: `{:?}`", t);
     println!("u: `{:?}`", u);
+}
+
+
+trait PrintInOption {
+    fn print_in_option(self);
+}
+
+impl <T> PrintInOption for T where Option<T>: Debug {
+    fn print_in_option(self) {
+        println!("some {:?}", Some(self));
+    }
 }
