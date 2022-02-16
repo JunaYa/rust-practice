@@ -1,3 +1,5 @@
+
+use std::fmt::{ Debug, Display };
 fn main() {
     println!("Hello, world!");
     p1();
@@ -24,6 +26,14 @@ fn main() {
     let rectangle = Rectangle { width: 4.0, height: 6.0 };
     print_debug(&rectangle);
     println!("{}", area(&rectangle));
+
+    // multiple bounds
+    let string = "world";
+    let array = vec![1, 2, 3];
+    let vec = vec![1, 2, 3];
+
+    compare_print(&string);
+    compare_types(&array, &vec);
 }
 
 struct A;
@@ -105,11 +115,20 @@ impl HasArea for Rectangle {
     }
 }
 
-use std::fmt::Debug;
 fn print_debug<T: Debug> (t: &T) {
     println!("{:?}", t);
 }
 
 fn area<T: HasArea> (t: &T) -> f64 {
     t.area()
+}
+
+fn compare_print<T: Debug + Display> (t: &T) {
+    println!("Debug: {:?}", t);
+    println!("Display: {:?}", t);
+}
+
+fn compare_types<T: Debug, U: Debug>(t: &T, u: &U) {
+    println!("t: `{:?}`", t);
+    println!("u: `{:?}`", u);
 }
