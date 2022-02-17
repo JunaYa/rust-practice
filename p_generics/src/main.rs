@@ -36,6 +36,17 @@ fn main() {
     compare_types(&array, &vec);
 
     vec.print_in_option();
+
+    // 
+    let number_1 = 1;
+    let number_2 = 10;
+    let container = Container(number_1, number_2);
+    println!("number1 {} number2 {} result {}", 
+        &number_1, &number_2,
+        container.contains(&number_1, &number_2));
+    println!("first {}", container.first());
+    println!("last {}", container.last());
+    println!("diffence {}", difference(&container));
 }
 
 struct A;
@@ -135,7 +146,6 @@ fn compare_types<T: Debug, U: Debug>(t: &T, u: &U) {
     println!("u: `{:?}`", u);
 }
 
-
 trait PrintInOption {
     fn print_in_option(self);
 }
@@ -144,4 +154,30 @@ impl <T> PrintInOption for T where Option<T>: Debug {
     fn print_in_option(self) {
         println!("some {:?}", Some(self));
     }
+}
+
+struct Container(i32, i32);
+
+trait Contains<A, B> {
+    fn contains(&self, _: &A, _: &B) -> bool;
+    fn first(&self) -> i32;
+    fn last(&self) -> i32;
+}
+
+impl Contains<i32, i32> for Container {
+    fn contains(&self, number_1: &i32, number_2: &i32) -> bool {
+        (&self.0 == number_1) && (&self.1 == number_2)
+    }
+
+    fn first(&self) -> i32 {
+        self.0
+    }
+
+    fn last(&self) -> i32 {
+        self.1
+    }
+}
+
+fn difference<A, B, C>(container: &C) -> i32 where C: Contains<A, B> {
+    container.first() - container.last()
 }
