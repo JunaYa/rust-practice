@@ -47,6 +47,14 @@ fn main() {
     println!("first {}", container.first());
     println!("last {}", container.last());
     println!("diffence {}", difference(&container));
+
+    let number1 = 2;
+    let number2 = 20;
+    let container_new = ContainerNew(number1, number2);
+    println!("container_new num1: {} num2: {} result: {}", &number1, &number2, container_new.contains(&number1, &number2));
+    println!("fist {}", container_new.first());
+    println!("last {}", container_new.last());
+    println!("dirrence new {}", dirrence_new(&container_new));
 }
 
 struct A;
@@ -157,11 +165,20 @@ impl <T> PrintInOption for T where Option<T>: Debug {
 }
 
 struct Container(i32, i32);
+struct ContainerNew(i32, i32);
 
 trait Contains<A, B> {
     fn contains(&self, _: &A, _: &B) -> bool;
     fn first(&self) -> i32;
     fn last(&self) -> i32;
+}
+
+trait ContainsNew {
+    type A;
+    type B;
+    fn contains(&self, _:&Self::A, _: &Self::B) -> bool;
+    fn first (&self) -> i32;
+    fn last  (&self) -> i32;
 }
 
 impl Contains<i32, i32> for Container {
@@ -178,6 +195,28 @@ impl Contains<i32, i32> for Container {
     }
 }
 
+impl ContainsNew for ContainerNew {
+    type A = i32;
+
+    type B = i32;
+
+    fn contains(&self, number_1: &i32, number_2: &i32) -> bool {
+        (&self.0 == number_1) && (&self.1 == number_2)
+    }
+
+    fn first (&self) -> i32 {
+        self.0
+    }
+
+    fn last (&self) -> i32 {
+        self.1
+    }
+}
+
 fn difference<A, B, C>(container: &C) -> i32 where C: Contains<A, B> {
     container.first() - container.last()
+}
+
+fn dirrence_new<C: ContainsNew>(container: &C) -> i32 {
+    container.last() - container.first()
 }
