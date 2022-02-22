@@ -16,6 +16,11 @@ fn main() {
     println!("add one after y is {}", y);
 
     print_one(&y);
+    
+    let mut owner = Owner(1);
+    owner.print();
+    owner.add();
+    owner.print();
 }
 
 fn print_refs<'a, 'b> (x: &'a i32, y: &'b i32) {
@@ -33,4 +38,12 @@ fn print_one<'a> (x: &'a i32) {
 
 fn add_one<'a> (x: &'a mut i32) {
     *x += 1;
+}
+
+struct Owner(i32);
+impl Owner {
+    fn add<'a> (&'a mut self) { self.0 += 1}
+    fn print<'a> (&'a self) {
+        println!("owner is {}", self.0);
+    }
 }
