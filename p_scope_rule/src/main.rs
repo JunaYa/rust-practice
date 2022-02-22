@@ -28,6 +28,8 @@ fn main() {
 
     // aliasing
     p_alising();
+
+    p_ref_parten();
 }
 
 fn eat_box_i32 (boxed_i32: Box<i32>) {
@@ -74,6 +76,36 @@ fn p_alising () {
     let new_borrow_point = &point;
     println!("Point has coordinate {} {} {}", new_borrow_point.x, new_borrow_point.y, new_borrow_point.z);
     println!("Point has coordinate {} {} {}", point.x, point.y, point.z);
+}
 
+fn p_ref_parten () {
+    let c = 'Q';
 
+    let ref ref_c1 = c;
+    let ref_c2 = &c;
+
+    println!("ref_c1 equivalent ref_c2 {} {}", *ref_c1, *ref_c2);
+
+    let point = Point { x: 1, y: 1, z: 1 };
+    let _copy_of_x = {
+        let Point { x: ref ref_to_x, y:_, z:_ } = point;
+        *ref_to_x
+    };
+
+    let mut mutable_point = point;
+    {
+        let Point { x:_, y: ref mut mut_ref_to_y, z:_ } = mutable_point;
+        *mut_ref_to_y = 1
+    }
+
+    // println!("point is {}", point.x);
+    println!("point is {} {} {}", mutable_point.x, mutable_point.y, mutable_point.z);
+
+    let mut mut_tuple = (Box::new(5u32), 2u32);
+    {
+        let (_, ref mut last) = mut_tuple;
+        *last = 2u32;
+    }
+
+    println!("tuple is {:?}", mut_tuple);
 }
