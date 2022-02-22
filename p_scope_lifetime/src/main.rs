@@ -21,6 +21,8 @@ fn main() {
     owner.print();
     owner.add();
     owner.print();
+
+    p_struct();
 }
 
 fn print_refs<'a, 'b> (x: &'a i32, y: &'b i32) {
@@ -47,3 +49,34 @@ impl Owner {
         println!("owner is {}", self.0);
     }
 }
+
+#[derive(Debug)]
+struct Borrowed<'a>(&'a i32);
+
+#[derive(Debug)]
+struct NameBorrowed<'a> {
+    x: &'a i32,
+    y: &'a i32,
+}
+
+#[derive(Debug)]
+enum Either<'a> {
+    Num(i32),
+    Ref(&'a i32),
+}
+
+fn p_struct () {
+    let x = 12;
+    let y = 14;
+
+    let single = Borrowed(&x);
+    let double = NameBorrowed {x: &x, y: &y };
+    let reference = Either::Ref(&x);
+    let number = Either::Num(y);
+
+    println!("single is {:?}", single);
+    println!("double is {:?} {} {}", double, double.x, double.y);
+    println!("reference is {:?}", reference);
+    println!("numer is {:?}", number);
+}
+
