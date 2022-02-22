@@ -23,6 +23,9 @@ fn main() {
     owner.print();
 
     p_struct();
+
+    let b: BorrowedTrait = Default::default();
+    println!("b is {:?}", b);
 }
 
 fn print_refs<'a, 'b> (x: &'a i32, y: &'b i32) {
@@ -80,3 +83,14 @@ fn p_struct () {
     println!("numer is {:?}", number);
 }
 
+#[derive(Debug)]
+struct BorrowedTrait<'a> {
+    x: &'a i32,
+}
+impl <'a> Default for BorrowedTrait<'a> {
+    fn default() -> Self {
+        Self {
+            x: &20,
+        }
+    }
+}
