@@ -47,6 +47,10 @@ name = "p_print"
 version = "0.1.0"
 
 [[package]]
+name = "p_scope_lifetime"
+version = "0.1.0"
+
+[[package]]
 name = "p_scope_rule"
 version = "0.1.0"
 
