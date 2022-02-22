@@ -7,6 +7,15 @@ fn main() {
     println!("out x is {}", &x);
 
     borrow_error();
+
+    let x = 1;
+    let mut y = 1;
+    print_one(&x);
+
+    add_one(&mut y);
+    println!("add one after y is {}", y);
+
+    print_one(&y);
 }
 
 fn print_refs<'a, 'b> (x: &'a i32, y: &'b i32) {
@@ -16,4 +25,12 @@ fn print_refs<'a, 'b> (x: &'a i32, y: &'b i32) {
 fn borrow_error<'a> () {
     let _x = 2;
     // let y: &'a i32 = &_x;
+}
+
+fn print_one<'a> (x: &'a i32) {
+    println!("print one x is {}", x);
+}
+
+fn add_one<'a> (x: &'a mut i32) {
+    *x += 1;
 }
