@@ -1,3 +1,5 @@
+use std::{mem::Discriminant, fmt::Display};
+
 fn main() {
     println!("Hello, world!");
 
@@ -26,8 +28,25 @@ fn main() {
 
     let b: BorrowedTrait = Default::default();
     println!("b is {:?}", b);
+
+    let mut list = List {
+        manager: Manager {
+            text: "hello",
+        }
+    };
+    list.get_interface().noop();
+
+    println!("Interface should be droped here and the borrow released");
+
+    use_list(&list);
+
+    let s1 = "string".to_string();
+    static_bound(&s1);
 }
 
+fn static_bound <T: Display + 'static> (t: &T) {
+    println!("{}", t);
+}
 fn print_refs<'a, 'b> (x: &'a i32, y: &'b i32) {
     println!("x is {} y is {}", x, y);
 }
@@ -93,4 +112,33 @@ impl <'a> Default for BorrowedTrait<'a> {
             x: &20,
         }
     }
+}
+
+struct Interface<'b, 'a: 'b> {
+    manager: &'b mut Manager<'a>,
+}
+
+impl<'b, 'a: 'b> Interface<'b, 'a> {
+    pub fn noop(self) {
+        println!("print interface");
+    }
+}
+struct Manager<'a> {
+    text: &'a str,
+}
+
+struct List<'a> {
+    manager: Manager<'a>,
+}
+
+impl <'a> List<'a> {
+    pub fn get_interface<'b>(&'b mut self) -> Interface<'b, 'a> where 'a: 'b {
+        Interface {
+            manager: &mut self.manager,
+        }
+    }
+}
+
+fn use_list(list: &List) {
+    println!("{}", list.manager.text);
 }
