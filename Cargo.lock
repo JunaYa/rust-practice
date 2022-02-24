@@ -62,6 +62,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "p_string"
+version = "0.1.0"
+
+[[package]]
 name = "p_struct"
 version = "0.1.0"
 

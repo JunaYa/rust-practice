@@ -15,6 +15,7 @@ members = [
 	"p_generics",
 	"p_scope_rule",
 	"p_scope_lifetime",
+	"p_string",
 ]
 
 [package]
