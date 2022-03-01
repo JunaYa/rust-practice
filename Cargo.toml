@@ -16,6 +16,7 @@ members = [
 	"p_scope_rule",
 	"p_scope_lifetime",
 	"p_string",
+	"p_trait",
 ]
 
 [package]
